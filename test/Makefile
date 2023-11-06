@@ -2,16 +2,17 @@
 SRC = ../src/direction.cpp \
       ../src/positionA.cpp \
       ../src/positionB.cpp \
-      ./fsm_test.cpp\
+      ./visitor_test.cpp\
       ../src/positionC.cpp\
       ../src/positionD.cpp\
-      ../src/positionE.cpp
+      ../src/positionE.cpp\
+	  ../src/visitor.cpp
 # include folders
 IFLAGS = -I../src
 # compiler
 CC = g++
 # executable
-EXECUTABLE = fsm.test.out
+EXECUTABLE = visitor.test.out
 # compiler options
 CFLAGS = -Wall -g -std=c++14 -fpermissive
 # remove
@@ -41,7 +42,7 @@ coverage-folder:
 # create coverage data and write into coverage folder
 coverage-info:
 	./$(EXECUTABLE)
-	lcov --capture --directory ./ --output-file ./output/lcov.info
+	lcov --capture --directory ../src --output-file ./output/lcov.info
 	lcov -r ./output/lcov.info '/usr/include/*' '_deps/*' '*.png' '*gtest*' --output-file ./output/lcov.info
 	genhtml ./output/lcov.info --output-directory ./output
 	
